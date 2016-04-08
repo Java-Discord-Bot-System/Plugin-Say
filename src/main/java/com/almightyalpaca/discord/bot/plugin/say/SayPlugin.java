@@ -1,9 +1,9 @@
 package com.almightyalpaca.discord.bot.plugin.say;
 
-import com.almightyalpaca.discord.bot.system.command.AbstractCommand;
-import com.almightyalpaca.discord.bot.system.command.annotation.Command;
+import com.almightyalpaca.discord.bot.system.command.Command;
+import com.almightyalpaca.discord.bot.system.command.CommandHandler;
 import com.almightyalpaca.discord.bot.system.command.arguments.special.Rest;
-import com.almightyalpaca.discord.bot.system.events.CommandEvent;
+import com.almightyalpaca.discord.bot.system.events.commands.CommandEvent;
 import com.almightyalpaca.discord.bot.system.exception.PluginLoadingException;
 import com.almightyalpaca.discord.bot.system.exception.PluginUnloadingException;
 import com.almightyalpaca.discord.bot.system.plugins.Plugin;
@@ -14,13 +14,13 @@ import net.dv8tion.jda.utils.PermissionUtil;
 
 public class SayPlugin extends Plugin {
 
-	class SayCommand extends AbstractCommand {
+	class SayCommand extends Command {
 
 		public SayCommand() {
 			super("say", "Let me say something", "");
 		}
 
-		@Command(dm = true, guild = true, async = true)
+		@CommandHandler(dm = true, guild = true, async = true)
 		private void onCommand(final CommandEvent event, final Rest rest) {
 			String message = "\u180E" + rest.getString();
 			if (event.isGuild()) {
